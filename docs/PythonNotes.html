@@ -1,0 +1,32 @@
+<html>
+
+<body>
+
+<title>Python SDK Notes</title>
+
+<h1>Python SDK Notes</h1>
+
+<p>The Python Rapid SDK is designed to help in creating Python applications to be executed on the Sirit UFH readers.</p>
+
+<h2>Executing a Python application on the Reader</h2>
+
+<ol>
+  <li>Open a browser</li>
+  <li>Go to URL http://reader_ip_address</li>
+  <li>Select User Application Manager under Advanced Functions</li>
+  <li>Under Application Transfer, enter in the location of the rapid.py file. By default this file will be in the RAPID SDK\python directory of the RST install directory. Transfer the file to reader by pressing the Transfer File button. This step will only need to be done the first time or when the rapid.py has changed. This file will now be listed in the Application Name combo box and the Python Applications combo box</li>
+  <li>Under Application Transfer, enter in the location of the application class file. Transfer the file to reader by pressing the Transfer File button. The application will now be listed in the Application Name combo box and the Python Applications combo box</li>
+  <li>Under Python Applications combo box, select the application.</li>
+  <li>Press the Go button. A Message box will be displayed showing the process ID for the application. When the screen refreshes, the process ID will be listed under Running User Applications.</li>
+</ol>
+
+<h2>Python Developer Requirements</h2>
+
+<ul>
+  <li>The first statement of a python file needs to be #!/usr/bin/python -u</li>
+  <li>To load the rapid SDK use import rapid command</li>
+</ul>
+
+</body>
+
+</html>

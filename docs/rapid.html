@@ -1,0 +1,292 @@
+
+<!doctype html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module rapid</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>rapid</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/cygdrive/i/rapid.py">/cygdrive/i/rapid.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="socket.html">socket</a><br>
+</td><td width="25%" valign=top><a href="thread.html">thread</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="exceptions.html#Exception">exceptions.Exception</a>(<a href="exceptions.html#BaseException">exceptions.BaseException</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="rapid.html#ConnectionError">ConnectionError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="rapid.html#ReaderError">ReaderError</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="rapid.html#Command">Command</a>
+</font></dt><dt><font face="helvetica, arial"><a href="rapid.html#Event">Event</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Command">class <strong>Command</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Handles&nbsp;connecting&nbsp;to,&nbsp;sending&nbsp;commands&nbsp;to,&nbsp;and&nbsp;parsing&nbsp;<br>
+the&nbsp;results&nbsp;received&nbsp;from&nbsp;the&nbsp;reader<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Command-__init__"><strong>__init__</strong></a>(self, ipAddress<font color="#909090">='localhost'</font>, timeout<font color="#909090">=10</font>)</dt><dd><tt>Constructor<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ipAddress&nbsp;-&nbsp;IP&nbsp;Address&nbsp;of&nbsp;the&nbsp;reader<br>
+&nbsp;&nbsp;&nbsp;&nbsp;timeout&nbsp;-&nbsp;Timeout&nbsp;on&nbsp;blocking&nbsp;socket&nbsp;operations<br>
+Exceptions:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#ConnectionError">ConnectionError</a>&nbsp;-&nbsp;Errors&nbsp;encountered&nbsp;while&nbsp;setting<br>
+&nbsp;&nbsp;&nbsp;&nbsp;up&nbsp;the&nbsp;<a href="#Command">Command</a>&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="Command-close"><strong>close</strong></a>(self)</dt><dd><tt>Closes&nbsp;the&nbsp;connection&nbsp;to&nbsp;the&nbsp;reader.<br>
+&nbsp;<br>
+Exceptions:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#ConnectionError">ConnectionError</a>&nbsp;-&nbsp;Connectivity&nbsp;issue&nbsp;encountered<br>
+&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;closing&nbsp;the&nbsp;socket</tt></dd></dl>
+
+<dl><dt><a name="Command-execute"><strong>execute</strong></a>(self, command, *parms)</dt><dd><tt>Executes&nbsp;a&nbsp;function&nbsp;call&nbsp;on&nbsp;the&nbsp;reader.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;command&nbsp;-&nbsp;C2&nbsp;function&nbsp;to&nbsp;be&nbsp;executed&nbsp;on&nbsp;the&nbsp;reader<br>
+&nbsp;&nbsp;&nbsp;&nbsp;parms&nbsp;-&nbsp;Parameters&nbsp;of&nbsp;the&nbsp;function&nbsp;as&nbsp;a&nbsp;tuple<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;full&nbsp;response&nbsp;from&nbsp;the&nbsp;reader&nbsp;with&nbsp;the&nbsp;'OK'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;removed.<br>
+Exceptions:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#ReaderError">ReaderError</a>&nbsp;-&nbsp;The&nbsp;reader&nbsp;has&nbsp;returned&nbsp;an&nbsp;error<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#ConnectionError">ConnectionError</a>&nbsp;-&nbsp;Connectivity&nbsp;issue&nbsp;encountered<br>
+&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;communicating&nbsp;with&nbsp;the&nbsp;reader</tt></dd></dl>
+
+<dl><dt><a name="Command-get"><strong>get</strong></a>(self, config)</dt><dd><tt>Returns&nbsp;value&nbsp;of&nbsp;the&nbsp;configuration&nbsp;variable.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;config&nbsp;-&nbsp;C2&nbsp;variable&nbsp;to&nbsp;get&nbsp;the&nbsp;value&nbsp;for<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;value&nbsp;for&nbsp;the&nbsp;C2&nbsp;variable<br>
+Exceptions:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#ReaderError">ReaderError</a>&nbsp;-&nbsp;The&nbsp;reader&nbsp;has&nbsp;returned&nbsp;an&nbsp;error<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#ConnectionError">ConnectionError</a>&nbsp;-&nbsp;Connectivity&nbsp;issue&nbsp;encountered<br>
+&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;communicating&nbsp;with&nbsp;the&nbsp;reader</tt></dd></dl>
+
+<dl><dt><a name="Command-getEventChannel"><strong>getEventChannel</strong></a>(self, function)</dt><dd><tt>Creates&nbsp;an&nbsp;event&nbsp;channel&nbsp;and&nbsp;returns&nbsp;the&nbsp;id&nbsp;of&nbsp;the&nbsp;event&nbsp;channel.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;-&nbsp;Callback&nbsp;function&nbsp;to&nbsp;handle&nbsp;events<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;event&nbsp;channel&nbsp;ID</tt></dd></dl>
+
+<dl><dt><a name="Command-open"><strong>open</strong></a>(self)</dt><dd><tt>Opens&nbsp;the&nbsp;connection&nbsp;to&nbsp;the&nbsp;reader.<br>
+&nbsp;<br>
+Exceptions:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#ConnectionError">ConnectionError</a>&nbsp;-&nbsp;Connectivity&nbsp;issue&nbsp;encountered<br>
+&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;opening&nbsp;the&nbsp;socket</tt></dd></dl>
+
+<dl><dt><a name="Command-send"><strong>send</strong></a>(self, command)</dt><dd><tt>Send&nbsp;raw&nbsp;C2&nbsp;commands&nbsp;to&nbsp;the&nbsp;reader.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;command&nbsp;-&nbsp;Complete&nbsp;C2&nbsp;command&nbsp;to&nbsp;be&nbsp;sent&nbsp;to&nbsp;the&nbsp;reader<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;full&nbsp;non-parsed&nbsp;response&nbsp;from&nbsp;the&nbsp;reader<br>
+Exceptions:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#ConnectionError">ConnectionError</a>&nbsp;-&nbsp;Connectivity&nbsp;issue&nbsp;encountered<br>
+&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;communicating&nbsp;with&nbsp;the&nbsp;reader</tt></dd></dl>
+
+<dl><dt><a name="Command-set"><strong>set</strong></a>(self, config, value)</dt><dd><tt>Sets&nbsp;the&nbsp;value&nbsp;of&nbsp;configuration&nbsp;variable.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;config&nbsp;-&nbsp;C2&nbsp;variable&nbsp;to&nbsp;be&nbsp;set<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;-&nbsp;New&nbsp;value&nbsp;for&nbsp;the&nbsp;C2&nbsp;variable<br>
+Exceptions:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#ReaderError">ReaderError</a>&nbsp;-&nbsp;The&nbsp;reader&nbsp;has&nbsp;returned&nbsp;an&nbsp;error<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#ConnectionError">ConnectionError</a>&nbsp;-&nbsp;Connectivity&nbsp;issue&nbsp;encountered<br>
+&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;communicating&nbsp;with&nbsp;the&nbsp;reader</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>isLive</strong> = False</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ConnectionError">class <strong>ConnectionError</strong></a>(<a href="exceptions.html#Exception">exceptions.Exception</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Raised&nbsp;when&nbsp;an&nbsp;error&nbsp;occurrs&nbsp;in&nbsp;the&nbsp;connectivity&nbsp;with&nbsp;the&nbsp;reader.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="rapid.html#ConnectionError">ConnectionError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ConnectionError-__init__"><strong>__init__</strong></a>(self, value)</dt></dl>
+
+<dl><dt><a name="ConnectionError-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x6cb87ab0&gt;<dd><tt>T.<a href="#ConnectionError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="ConnectionError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#ConnectionError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="ConnectionError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#ConnectionError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="ConnectionError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#ConnectionError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="ConnectionError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#ConnectionError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="ConnectionError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ConnectionError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#ConnectionError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="ConnectionError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#ConnectionError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="ConnectionError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Event">class <strong>Event</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Handles&nbsp;event&nbsp;messages&nbsp;recieved&nbsp;from&nbsp;the&nbsp;reader&nbsp;over&nbsp;a&nbsp;socket&nbsp;connection.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Event-__init__"><strong>__init__</strong></a>(self, ipAddress<font color="#909090">='localhost'</font>)</dt><dd><tt>Constructor<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ipAddress&nbsp;-&nbsp;IP&nbsp;Address&nbsp;of&nbsp;the&nbsp;reader<br>
+Exceptions:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ConnenctionError&nbsp;-&nbsp;Error&nbsp;encountered&nbsp;while&nbsp;trying&nbsp;to&nbsp;create<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;event&nbsp;socket</tt></dd></dl>
+
+<dl><dt><a name="Event-close"><strong>close</strong></a>(self)</dt><dd><tt>Closes&nbsp;the&nbsp;event&nbsp;channel.</tt></dd></dl>
+
+<dl><dt><a name="Event-getid"><strong>getid</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;ID&nbsp;for&nbsp;the&nbsp;event&nbsp;channel.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;event&nbsp;channel&nbsp;ID</tt></dd></dl>
+
+<dl><dt><a name="Event-receive"><strong>receive</strong></a>(self, function)</dt><dd><tt>Starts&nbsp;the&nbsp;receiving&nbsp;thread&nbsp;for&nbsp;events.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;-&nbsp;Callback&nbsp;function&nbsp;to&nbsp;handle&nbsp;events</tt></dd></dl>
+
+<dl><dt><a name="Event-recv_thread"><strong>recv_thread</strong></a>(self, function)</dt><dd><tt>Thread&nbsp;that&nbsp;continully&nbsp;blocks&nbsp;on&nbsp;the&nbsp;event&nbsp;socket<br>
+waiting&nbsp;for&nbsp;event&nbsp;information.&nbsp;If&nbsp;event&nbsp;information&nbsp;is<br>
+received&nbsp;it&nbsp;is&nbsp;fowarded&nbsp;on&nbsp;to&nbsp;the&nbsp;specified&nbsp;function.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;-&nbsp;Callback&nbsp;function&nbsp;to&nbsp;handle&nbsp;events</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ReaderError">class <strong>ReaderError</strong></a>(<a href="exceptions.html#Exception">exceptions.Exception</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Raised&nbsp;when&nbsp;the&nbsp;reader&nbsp;sends&nbsp;back&nbsp;a&nbsp;status&nbsp;other&nbsp;than&nbsp;'OK'.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="rapid.html#ReaderError">ReaderError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ReaderError-__init__"><strong>__init__</strong></a>(self, value)</dt></dl>
+
+<dl><dt><a name="ReaderError-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x6cb87ab0&gt;<dd><tt>T.<a href="#ReaderError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="ReaderError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#ReaderError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="ReaderError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#ReaderError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="ReaderError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#ReaderError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="ReaderError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#ReaderError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="ReaderError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ReaderError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#ReaderError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="ReaderError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#ReaderError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="ReaderError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>COMMAND_PORT</strong> = 50007<br>
+<strong>DEFAULT_TIMEOUT</strong> = 10<br>
+<strong>EVENT_PORT</strong> = 50008</td></tr></table>
+</body></html>
