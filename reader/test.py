@@ -3,6 +3,8 @@
 import sys
 import rapid
 import time
+import csv
+import subprocess
 
 # Callback to handle events
 def event_callback(event):
@@ -30,14 +32,11 @@ def parse_event(event, field_name, field_size):
 
       return rdata
 
-reader_ip = "192.168.1.22"
-# Handle command line argument for alternate ip address
-if len(sys.argv) > 1:
-    reader_ip = sys.argv[1]
-
-print "Reader IP address is %s" % (reader_ip)
-
-try:
+def read_tags(reader_ip, event_type):
+    """
+    Opens a socket to the ip address, generates a tag list,
+    then closes the socket
+    """
     # Open socket using reader IP address
     cmd = rapid.Command(reader_ip)
     cmd.open()
@@ -52,9 +51,9 @@ try:
     id = cmd.getEventChannel(event_callback)
     print "Event Channel ID %s created" % id
 
-    # Register for event.tag.report
-    cmd.execute("reader.events.register", (id, "event.tag.report"))
-    print "Registered for event.tag.report on Ch. %s" % id
+    # Register for event_type
+    cmd.execute("reader.events.register", (id, event_type))
+    print "Registered for event_type on Ch. %s" % id
 
     # start tag read in active mode
     cmd.set("setup.operating_mode", "active")
@@ -74,13 +73,22 @@ try:
     print "Mode: Standby"
     print "./tag_list.log generated"
 
-    # Unregister for event.tag.report
-    cmd.execute("reader.events.unregister", (id, "event.tag.report"))
-    print "Unregistered for event.tag.report"
+    # Unregister for event_type
+    cmd.execute("reader.events.unregister", (id, event_type))
+    print "Unregistered for %s" % event_type
 
     # Close the command connection and event channel
     cmd.close()
     print "Connection Closed"
 
+############################# Begin Program ####################################
+reader_ip = '192.168.1.22'
+# Handle command line argument for alternate ip address
+if len(sys.argv) > 1:
+    reader_ip = sys.argv[1]
+print "Reader IP address is %s" % (reader_ip)
+
+try:
+    read_tags(reader_ip, "event.tag.arrive")
 except Exception, e:
         print "Open failed: " + str(e)
