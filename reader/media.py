@@ -31,7 +31,9 @@ with open("tag_list.log", "r") as tag_list:
             #print users[j]["id"]
             #print trim_id == users[j]["id"]
             if trim_id == users[j]["id"]:
-                print users[j]["name"]
+                print "Match user %s" % users[j]["name"]
+		        play_media = users[j]["media"]
+                call(['omxplayer', play_media])
         i += 1
 
 
