@@ -53,7 +53,7 @@ def read_tags(reader_ip, event_type):
 
     # Register for event_type
     cmd.execute("reader.events.register", (id, event_type))
-    print "Registered for event_type on Ch. %s" % id
+    print "Registered for %s on Ch. %s" % (event_type, id)
 
     # start tag read in active mode
     cmd.set("setup.operating_mode", "active")
@@ -81,8 +81,18 @@ def read_tags(reader_ip, event_type):
     cmd.close()
     print "Connection Closed"
 
-
-#######################################################3
+#######################################################
+def trim_tag_id(line):
+    return str(line[8:len(line)-2:1])
+#######################################################
+def check_users(users, trim_id):
+    for j in range(0,len(users)):
+        if trim_id == users[j]["id"] and users[j]["played"] == False:
+            users[j]["played"] = True
+            print "Match user %s" % users[j]["name"]
+            play_media = users[j]["media"]
+            call(['omxplayer', play_media])
+#######################################################
 def disp_user_media(users):
     """
     Parse tag_list. Search for tag-user matches and display their media.
@@ -95,11 +105,7 @@ def disp_user_media(users):
             if line == "":
                 eof = True
             #strip "Tag ID:" field and \n char
-            trim_id = str(line[8:len(line)-2:1])
-            for j in range(0,len(users)):
-                if trim_id == users[j]["id"] and users[j]["played"] == False:
-                    users[j]["played"] = True
-                    print "Match user %s" % users[j]["name"]
-                    play_media = users[j]["media"]
-                    call(['omxplayer', play_media])
+            trim_id = trim_tag_id(line)
+            check_users(users, trim_id)
+
             i += 1
