@@ -97,7 +97,8 @@ def disp_user_media(users):
             #strip "Tag ID:" field and \n char
             trim_id = str(line[8:len(line)-2:1])
             for j in range(0,len(users)):
-                if trim_id == users[j]["id"]:
+                if trim_id == users[j]["id"] and users[j]["played"] == False:
+                    users[j]["played"] = True
                     print "Match user %s" % users[j]["name"]
                     play_media = users[j]["media"]
                     call(['omxplayer', play_media])
