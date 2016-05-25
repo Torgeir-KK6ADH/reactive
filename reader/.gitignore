@@ -1,0 +1,5 @@
+*.pyc
+*.log
+*.stackdump
+*.exe
+*.ini
