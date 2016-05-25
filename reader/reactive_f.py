@@ -75,12 +75,14 @@ def read_tags(reader_ip, event_type):
 
     # Unregister for event_type
     cmd.execute("reader.events.unregister", (id, event_type))
-    print "Unregistered for %s" % event_type
+    print "Unregistered for %s on Ch. %s" % (event_type, id)
 
     # Close the command connection and event channel
     cmd.close()
     print "Connection Closed"
-
+#######################################################
+def register_tag_id():
+    pass
 #######################################################
 def trim_tag_id(line):
     return str(line[8:len(line)-2:1])
